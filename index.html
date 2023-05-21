@@ -1,14 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="public/reset.css">
-  <link rel="stylesheet" href="public/styles.css">
-  <script src="public/index.js" defer="true"></script>
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/reset.css">
+    <link rel="stylesheet" href="public/styles.css">
+    <script src="public/index.js" defer="true"></script>
+    <title>Weather Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <h1>Weather Dashboard</h1>
+    </header>
+    <main>
+      <aside>
+        <h2>Search for a City:</h2>
+        <input class="search" type="search" placeholder="E.g. Denver, Seattle, ... ">
+        <input class="search-button" type="button" value="Search">
+        <hr>
+      </aside>
+      <section class="today">
+        <article class="today-details">
+          <h2>City Name (MM/DD/YYYY) <span><img src="" alt="" width="15" height="15"></span></h2>
+          <p>Temp:</p>
+          <p>Wind:</p>
+          <p>Humidity:</p>
+        </article>
+      </section>
+      <section class="forecast">
+        <article class="forecast-details">
+          <h4>5-Day Forecast:</h4>
+          <div class="card-container">
+            <div class="card">
+              <h5>MM/DD/YYYY</h5>
+              <img src="" alt="icon" width="50" height="50">
+              <p>Temp:</p>
+              <p>Wind:</p>
+              <p>Humidity:</p>
+            </div>
+            <div class="card">
+              <h5>MM/DD/YYYY</h5>
+              <img src="" alt="icon" width="50" height="50">
+              <p>Temp:</p>
+              <p>Wind:</p>
+              <p>Humidity:</p>
+            </div>
+            <div class="card">
+              <h5>MM/DD/YYYY</h5>
+              <img src="" alt="icon" width="50" height="50">
+              <p>Temp:</p>
+              <p>Wind:</p>
+              <p>Humidity:</p>
+            </div>
+            <div class="card">
+              <h5>MM/DD/YYYY</h5>
+              <img src="" alt="icon" width="50" height="50">
+              <p>Temp:</p>
+              <p>Wind:</p>
+              <p>Humidity:</p>
+            </div>
+            <div class="card">
+              <h5>MM/DD/YYYY</h5>
+              <img src="" alt="icon" width="50" height="50">
+              <p>Temp:</p>
+              <p>Wind:</p>
+              <p>Humidity:</p>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
 </html>
