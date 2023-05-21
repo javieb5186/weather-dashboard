@@ -1,0 +1,111 @@
+body {
+  width: 98%;
+  margin: auto;
+}
+
+header {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to right, lightblue, blue);
+  margin: 0.5rem 0;
+}
+
+header h1 {
+  color: white;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 24% 70%;
+  grid-template-rows: 200px;
+  gap: 2rem;
+}
+
+.forecast {
+  grid-column: 2 / 3;
+  padding: 0.5rem;
+}
+
+.search {
+  padding: 0.5rem 0;
+}
+
+.today {
+  width: 98%;
+  border: 2px solid black;
+  padding: 0.5rem;
+}
+
+.search-button {
+  color: white;
+  background-color: blue;
+  padding: 0.25rem 0;
+  border: none;
+}
+
+.today-details {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.forecast-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  row-gap: 0.5rem;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  width: 150px;
+  color: white;
+  background-color: darkslategray;
+  margin-bottom: 0.5rem;
+}
+
+.card > * {
+  margin: 0.75rem 0.25rem;
+}
+
+aside {
+  grid-row: 1 / 4;
+  display: flex;
+  flex-direction: column;
+}
+
+aside > * {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .card-container {
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+
+  .card {
+    margin: 10px 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  main {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    row-gap: 1rem;
+  }
+
+  .forecast {
+    grid-column: auto;
+  }
+}
