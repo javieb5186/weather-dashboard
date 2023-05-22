@@ -23,6 +23,11 @@ main {
   gap: 2rem;
 }
 
+img {
+  text-align: center;
+  align-self: center;
+}
+
 .forecast {
   grid-column: 2 / 3;
   padding: 0.5rem;
