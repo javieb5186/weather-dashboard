@@ -1,18 +1,5 @@
 const KEY = "f5961f2c2ed72fcda9775a1281cc984d";
 
-const date = dayjs().format('M/DD/YYYY');
-
-const day = dayjs(date).date();
-const month = dayjs(date).month();
-const year = dayjs(date).year();
-
-var dates = [];
-
-for (let i = 0; i < 6; i++) {
-  let date = dayjs(`${year}-${month + 1}-${day + i}`).format("M/DD/YYYY");
-  dates.push(date);
-}
-
 var todayForecast = [];
 var _5dayForecast = [];
 
@@ -47,43 +34,58 @@ function getAPI() {
           return response.json();
         })
         .then(function(data) {
-          console.log(data);
           todayForecast.push(data.name);
           todayForecast.push(data.weather[0].icon);
           todayForecast.push(data.main.temp);
           todayForecast.push(data.wind.speed);
           todayForecast.push(data.main.humidity);
-          console.log(todayForecast);
 
           displayToday();
         });
 
-      // let forecastRequest = 
-      // `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=imperial&appid=${KEY}`;
+      let forecastRequest = 
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=imperial&appid=${KEY}`;
 
-      // fetch(forecastRequest)
-      //   .then(function(response) {
-      //     return response.json();
-      //   })
-      //   .then(function(data) {
-      //     let arr = data.list;
-      //     for (let i = 0; i < arr.length; i++) {
-      //       let noon = dayjs(data.list[i].dt_txt);
-      //       console.log(data.list[i].dt_txt);
-      //       if(noon.hour() === 12){
-      //         _5dayForecast.push(data.list[i]);
-      //       }
-      //     }
-      //     console.log(_5dayForecast);
-      //   });
+      fetch(forecastRequest)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          let arr = data.list;
+          for (let i = 0; i < arr.length; i++) {
+            let noon = dayjs(data.list[i].dt_txt);
+            if(noon.hour() === 12){
+              _5dayForecast.push(data.list[i]);
+            }
+          }
+          displayForecast();
+        });
     });
 }
 
 function displayToday() {
   const icon = todayForecast[1];
-  $(".td-city-name").html(todayForecast[0] + " " + " (" + dates[0] + ") " + ' <span><img class="td-icon" src="" alt="Todays weather" width="30" height="30"></span>');
+  const date = dayjs().format("M/DD/YYYY")
+  $(".td-city-name").html(todayForecast[0] + " " + " (" + date + ") " + ' <span><img class="td-icon" src="" alt="Todays weather" width="35" height="35"></span>');
   $(".td-temp").text("Temp: " + todayForecast[2] + " \u00B0F");
   $(".td-wind").text("Wind: " + todayForecast[3] + " MPH");
   $(".td-hum").text("Humidity: " + todayForecast[4] + " %");
   document.getElementsByClassName("td-icon")[0].setAttribute("src", `https://openweathermap.org/img/wn/${icon}@2x.png`);
+}
+
+function displayForecast() {
+  const cards =  $(".card");
+
+  for (let i = 0; i < cards.length; i++) {
+    const d = dayjs(_5dayForecast[i].dt_txt).format("M/DD/YYYY");
+    const icon = _5dayForecast[i].weather[0].icon
+
+    const card = $(`.card-${i + 1}`).children();
+
+    card[0].innerHTML = d;
+    card[1].src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+    card[2].innerHTML = "Temp: " + _5dayForecast[i].main.temp + " \u00B0F";
+    card[3].innerHTML = "Wind: " + _5dayForecast[i].wind.speed + " MPH";
+    card[4].innerHTML = "Humidity: " + _5dayForecast[i].main.humidity + " %";
+  }
 }
