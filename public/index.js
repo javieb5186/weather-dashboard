@@ -98,7 +98,7 @@ function apiRequest(search) {
   var lat, long;
 
   let geoRequest = 
-  `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${KEY}`;
+  `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${KEY}`;
 
   fetch(geoRequest)
     .then(function(response) {
